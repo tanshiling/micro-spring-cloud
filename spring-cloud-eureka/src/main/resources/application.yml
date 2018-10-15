@@ -1,0 +1,15 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: eureka
+  security:
+    user:
+      name: root
+      password: 123
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://root:123@localhost:${server.port}/eureka/

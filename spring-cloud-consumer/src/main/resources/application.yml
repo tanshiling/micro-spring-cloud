@@ -1,0 +1,25 @@
+server:
+  port: 2001
+spring:
+  application:
+    name: consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:9001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+# 配置负载均衡算法的另一种写法，第一种是加上类，这是第二种
+#producer: #写服务的名字
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置均衡算法
+
+#ribbon:
+#  eureka:
+#    enabled: false #禁用负载均衡
+
+feign:
+  hystrix:
+    enabled: true

@@ -1,0 +1,20 @@
+server:
+  port: 4001
+spring:
+  application:
+    name: turbine
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:9001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+turbine:
+  app-config: consumer,consumer2
+  aggregator:
+    cluster-config: default
+  cluster-name-expression: "'default'"
+#  这里和服务启动类里的 registrationBean.addUrlMappings("/hystrix.stream")一致，原因不知
+#  https://www.cnblogs.com/hsz-csy/p/9172418.html
+  instanceUrlSuffix: /hystrix.stream

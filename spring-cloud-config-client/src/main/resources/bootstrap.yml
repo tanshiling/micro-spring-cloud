@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:3100 #配置configServer地址，配置server的文件必须放在 bootstrap.yml 中
+      profile: dev
+      label: master #当时用git时label默认是master
+
+  application:
+    name: application-abc #代表要找 name+profile 对应的文件

@@ -1,0 +1,21 @@
+server:
+  port: 2100
+spring:
+  application:
+    name: zuul
+  security:
+    user:
+      name: user
+      password: user
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:9001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#zuul代理
+zuul:
+  routes:
+    producer: /abc/** #提供者名称以及名称较长时可同等的路径访问地址
+  ignored-services: consumer #zuul默认会代理所有服务，可手动取消 localhost:2100/consumer/hello/aaa 404

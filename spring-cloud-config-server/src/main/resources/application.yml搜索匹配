@@ -1,0 +1,12 @@
+server:
+  port: 3100
+spring: #配置文件仓库地址
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/tanshiling/micro-spring-cloud-config-test #默认配置
+          search-paths:
+            - abc #以abc开头将会转到abc目录
+            - def
+

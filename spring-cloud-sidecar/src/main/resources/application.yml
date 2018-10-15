@@ -1,0 +1,20 @@
+server:
+  port: 8070
+spring:
+  application:
+    name: sidecar
+  security:
+    user:
+      name: user
+      password: user
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:9001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+sidecar:
+  port: 8060 #配置异构服务端口，host（域名） 需一致
+  health-uri: http://localhost:8060/health.json

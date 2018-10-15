@@ -1,0 +1,23 @@
+server:
+  port: 2100
+spring:
+  application:
+    name: zuul
+  security:
+    user:
+      name: user
+      password: user
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:9001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#zuul代理
+zuul:
+  routes: #配置路由映射
+    abcdef: #随便写，保证唯一性
+      path: /abcd/** #映射路径，即代理后的地址路径
+#     serviceId: producer #服务名
+      url: http://localhost:1001 #使用这个会使熔断和负载均衡失效，不推荐使用，但可配置

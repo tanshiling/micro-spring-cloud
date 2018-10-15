@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:3100 #配置configServer地址，配置server的文件必须放在 bootstrap.yml 中
+      profile: dev
+      label: master #当时用git时label默认是master
+      discovery:
+        enabled: true
+        service-id: server-eureka #注册到 eureka 的config-sever id
+      username: user #配置configserver安全时使用
+      password: 123
+  application:
+    name: application-abc #代表要找 name+profile 对应的文件
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:9001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}

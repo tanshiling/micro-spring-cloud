@@ -1,0 +1,11 @@
+# rabbit配置信息
+spring:
+  application:
+      name: rabbitMQ
+  rabbitmq:
+#    host: localhost
+#    port: 5672
+    addresses: 127.0.0.1:5672
+    username: guest
+    password: guest
+    publisher-confirms: true

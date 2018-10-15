@@ -1,0 +1,10 @@
+server:
+  port: 3100
+spring: #配置文件仓库地址
+  cloud:
+    config:
+      server:
+        git:
+#         uri: https://github.com/tanshiling/micro-spring-cloud-config-test
+          uri: https://github.com/tanshiling/{application} #根据通配符对应名称去不同的仓库寻找文件
+          

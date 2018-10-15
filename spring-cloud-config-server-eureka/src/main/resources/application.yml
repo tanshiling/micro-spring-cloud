@@ -1,0 +1,28 @@
+server:
+  port: 3200
+spring: #配置文件仓库地址
+  security:
+    basic:
+      enabled: true #开启认证
+    user:
+      name: user
+      password: 123
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/tanshiling/micro-spring-cloud-config-test #默认配置
+          search-paths:
+          - abc #以abc开头将会转到abc目录
+          - def
+          clone-on-start: true #启动就加载文件
+  application:
+    name: server-eureka
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:9001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}

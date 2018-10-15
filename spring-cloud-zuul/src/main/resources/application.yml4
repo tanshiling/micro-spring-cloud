@@ -1,0 +1,28 @@
+server:
+  port: 2100
+spring:
+  application:
+    name: zuul
+  security:
+    user:
+      name: user
+      password: user
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:9001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#zuul代理
+zuul:
+  routes: #配置路由映射
+    abcdef: #随便写，保证唯一性
+      path: /abcd/** #映射路径，即代理后的地址路径
+      service Id: producer #服务名
+ribbon: #禁用负载均衡
+  eureka:
+    enabled: false
+producer: #给上面对应的服务指定一个ribbon负载均衡，从以下配置中选择
+  ribbon:
+    listOfService: http://localhost:1001,http://localhost:1002,http://localhost:1003

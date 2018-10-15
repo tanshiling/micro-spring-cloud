@@ -1,0 +1,15 @@
+server:
+  port: 3100
+spring: #配置文件仓库地址
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/tanshiling/micro-spring-cloud-config-test #默认配置
+          repos:
+            simple:
+              uri: https://github.com/tanshiling/simple #当访问simple的时候执行
+            special: #当访问规则是special，并且符合以下规则的时候请求的uri
+              pattern: special*/dev*,special*/dev*
+              uri: https://github.com/tanshiling/special
+
