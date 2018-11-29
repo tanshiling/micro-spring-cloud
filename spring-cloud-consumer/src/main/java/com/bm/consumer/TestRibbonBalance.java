@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * 注意路径问题
  */
 @Configuration
-@com.bm.ExcludeCommentScan
+@com.bm.consumer.ExcludeCommentScan
 public class TestRibbonBalance {
 
     @Autowired
